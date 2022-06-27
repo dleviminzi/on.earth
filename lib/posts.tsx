@@ -23,7 +23,7 @@ export function getPosts() {
 }
 
 export function getPost(fileName: string) {
-	const path = fileName.replace('.md', '');
+	const id = fileName.replace(/\.md$/, '');
 	const file = fs.readFileSync(`posts/${fileName}`, 'utf-8');
 	const post = matter(file);
 	const title = post.data.title;
@@ -31,7 +31,7 @@ export function getPost(fileName: string) {
   const content = post.content
 
 	return {
-		path,
+		id,
 		title,
 		date,
     content

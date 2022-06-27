@@ -10,14 +10,16 @@ export default function Post({ post }: {
     content: string,
   }
 }) {
-  return <Layout>
-    {post.title}
-    <br />
-    {post.date}
-    <br />
-    {post.content}
-    <br />
-  </Layout>
+  return (
+    <div>
+      {post.title}
+      <br />
+      {post.date}
+      <br />
+      {post.content}
+      <br />
+    </div>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -33,9 +35,9 @@ export async function getStaticProps({ params }: {
   params: {
     id: string
   }
-  }) {
+}) {
   const id = params.id
-  const post = getPost(id)
+  const post = getPost(id + '.md')
 
   return {
     props: {
@@ -43,5 +45,3 @@ export async function getStaticProps({ params }: {
     },
   };
 }
-
-
